@@ -1,15 +1,21 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 
 interface GoalItemProps {
+  id: string;
   text: string;
+  onDeleteItem: (id: string) => void;
 }
 const GoalItem: React.FC<GoalItemProps> = props => {
   return (
-    <View style={styles.goalItem}>
-      <Text style={styles.goalText}>{props.text}</Text>
-    </View>
+    <Pressable onPress={props.onDeleteItem.bind(this, props.id)}>
+      <View style={styles.goalItem}>
+        <Text style={styles.goalText}>{props.text}</Text>
+      </View>
+    </Pressable>
   );
 };
+
+export default GoalItem;
 
 const styles = StyleSheet.create({
   goalItem: {
@@ -24,5 +30,3 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
 });
-
-export default GoalItem;
